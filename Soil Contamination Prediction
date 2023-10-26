@@ -1,0 +1,27 @@
+Soil Contamination Prediction
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.preprocessing import LabelEncoder
+from sklearn.metrics import r2_score, mean_squared_error
+from sklearn.ensemble import RandomForestRegressor
+from xgboost import XGBRegressor
+import pickle
+
+data=pd.read_csv('C:/Users/kakol/Downloads/pencemaran_tanah.csv')
+data
+
+encoder=LabelEncoder()
+encoded=encoder.fit_transform(data['nama_kabupaten_kota'])
+data['nama_kabupaten_kota'] = encoded
+
+encoded_cemar = encoder.fit_transform(data['mengalami_pencemaran_tanah'])
+encoded_cemar = [1 if x == 1 else 0 for x in encoded_cemar]
+data['mengalami_pencemaran_tanah'] = encoded_cemar
+
+X=data[["kode_provinsi","nama_kabupaten_kota", "jumlah_desa"]]
+Y=data["mengalami_pencemaran_tanah"]
