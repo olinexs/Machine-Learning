@@ -1,4 +1,4 @@
-Soil Contamination Prediction
+**#Soil Contamination Prediction#**
 
 import numpy as np
 import pandas as pd
@@ -25,3 +25,5 @@ data['mengalami_pencemaran_tanah'] = encoded_cemar
 
 X=data[["kode_provinsi","nama_kabupaten_kota", "jumlah_desa"]]
 Y=data["mengalami_pencemaran_tanah"]
+
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=0)
